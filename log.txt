@@ -1,0 +1,47 @@
+master started.
+start to collect out-of-time tasks.
+Distributing map task on part 0 0th file demo2\t1.txt
+Distributing map task on part 0 1th file demo2\t2.txt
+Got assigned map task on 0th file demo2\t1.txt
+Got assigned map task on 1th file demo2\t2.txt
+Map task on 0th file demo2\t1.txt completed
+Map task on 1th file demo2\t2.txt completed
+start distributeReduce
+Distributing reduce task on part 0 0th file null
+Distributing reduce task on part 1 0th file null
+Got assigned reduce task on part 0
+Got assigned reduce task on part 1
+Reduce task on 0th file null completed
+Reduce task on 0th file null completed
+Distributing reduce task on part 2 0th file null
+Distributing reduce task on part 3 0th file null
+Got assigned reduce task on part 2
+Got assigned reduce task on part 3
+Reduce task on 0th file null completed
+Reduce task on 0th file null completed
+Distributing reduce task on part 4 0th file null
+Got assigned reduce task on part 4
+Distributing reduce task on part 5 0th file null
+Got assigned reduce task on part 5
+Reduce task on 0th file null completed
+Reduce task on 0th file null completed
+Distributing reduce task on part 6 0th file null
+Distributing reduce task on part 7 0th file null
+Got assigned reduce task on part 6
+Got assigned reduce task on part 7
+Reduce task on 0th file null completed
+Reduce task on 0th file null completed
+Distributing reduce task on part 8 0th file null
+Distributing reduce task on part 9 0th file null
+Got assigned reduce task on part 8
+Got assigned reduce task on part 9
+Reduce task on 0th file null completed
+Reduce task on 0th file null completed
+All task completed. Nothing to do.
+worker run: 15
+All task completed. Nothing to do.
+worker run: 18
+All task completed. Nothing to do.
+worker run: 17
+All task completed. Nothing to do.
+worker run: 16
