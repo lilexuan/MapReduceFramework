@@ -8,11 +8,13 @@ import java.util.List;
 public class UserMR_deemo1 {
     public static List<KeyValue> mapf(String key, String value) {
         List<KeyValue> kva = new ArrayList<>();
-        value = value.replaceAll("\n", " ");
-        value = value.replaceAll("\t", " ");
+        value = value.replaceAll("[^a-zA-Z]", " ");
+        value = value.replaceAll(" {2,}", " ");
         String[] words = value.split(" ");
         for (String s : words) {
-            kva.add(new KeyValue(s, "1"));
+            if (s != null && s.length() > 0) {
+                kva.add(new KeyValue(s.toLowerCase(), "1"));
+            }
         }
         return kva;
     }

@@ -39,7 +39,7 @@ public class Worker {
                         workerReduce(reducer, taskInfo);
                         break;
                     case TASK_WAIT:
-                        TimeUnit.SECONDS.sleep(5);
+                        TimeUnit.SECONDS.sleep(1);
                         break;
                     case TASK_END:
                         System.out.println("All task completed. Nothing to do.");

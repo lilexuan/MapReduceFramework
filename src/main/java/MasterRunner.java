@@ -4,6 +4,8 @@ import task.TaskStatQueue;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -13,7 +15,7 @@ import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 public class MasterRunner {
-    public Master run(String[] files, int nReduce) {
+    public void run(String[] files, int nReduce) {
         // 创建map任务
         Deque<TaskStat> mapArray = new LinkedList<>();
         for (int fileIndex = 0; fileIndex < files.length; fileIndex++) {
@@ -32,9 +34,10 @@ public class MasterRunner {
         master.mapTaskWaiting = new TaskStatQueue(mapArray);
 
         // 向rmi注册master
+        Registry registry = null;
         try {
             RMIable skeleton = (RMIable) UnicastRemoteObject.exportObject(master, 0);
-            Registry registry = LocateRegistry.createRegistry(9999);
+            registry = LocateRegistry.createRegistry(9999);
             registry.rebind("master", skeleton);
             System.out.println("master started.");
         } catch (RemoteException e) {
@@ -47,16 +50,26 @@ public class MasterRunner {
             collectOutOfTime(master);
         }).start();
 
-        return master;
+        if (master.done()) {
+            try {
+                registry.unbind("master");
+                UnicastRemoteObject.unexportObject(master, true);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void collectOutOfTime(Master master) {
-        while (true) {
+        while (!master.done()) {
             try {
                 TimeUnit.SECONDS.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("collecting out-of-time tasks");
             Deque<TaskStat> timesOutTask;
             if (master.reduceTaskRunning != null) {
                 timesOutTask = master.reduceTaskRunning.timeOutQueue();
@@ -71,6 +84,7 @@ public class MasterRunner {
                 }
             }
         }
+        System.out.println("collection stoped");
     }
 
     public void deleteDirFile(String path) {
