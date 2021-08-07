@@ -1,6 +1,6 @@
 import mr.Mapper;
 import mr.Reducer;
-import user.UserMR_deemo1;
+import user.UserMR;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -27,6 +27,6 @@ public class WorkerRunner {
 
     public static void main(String[] args) {
         int nWorker = 4;
-        new WorkerRunner().run(UserMR_deemo1::mapf, UserMR_deemo1::reducef, nWorker);
+        new WorkerRunner().run(UserMR::mapf, UserMR::reducef, nWorker);
     }
 }

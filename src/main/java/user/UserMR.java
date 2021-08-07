@@ -5,7 +5,14 @@ import mr.KeyValue;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserMR_deemo1 {
+/**
+ * 这个类由用户自己编写
+ */
+public class UserMR {
+    public static String fileDir = "demo1";
+    public static int nWorker = 8;
+    public static int nReduce = 10;
+
     public static List<KeyValue> mapf(String key, String value) {
         List<KeyValue> kva = new ArrayList<>();
         value = value.replaceAll("[^a-zA-Z]", " ");

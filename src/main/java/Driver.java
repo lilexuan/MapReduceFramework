@@ -1,18 +1,14 @@
-import mr.KeyValue;
-import user.UserMR_deemo1;
+import user.UserMR;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
 import java.nio.file.Paths;
-import java.util.List;
 
 public class Driver {
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InterruptedException, FileNotFoundException {
-        String fileDir = "demo1"; // **由用户配置**
-        int nWorker = 8; // **由用户配置**
-        int nReduce = 10; // **由用户配置**
+        String fileDir = UserMR.fileDir;
+        int nWorker = UserMR.nWorker;
+        int nReduce = UserMR.nReduce;
 
 //        将日志打印到文件中
 //        PrintStream ps = new PrintStream(new FileOutputStream("log.txt"));
@@ -23,7 +19,7 @@ public class Driver {
             fileList[i] = String.valueOf(Paths.get(fileDir, fileList[i]));
         }
         new MasterRunner().run(fileList, nReduce);
-        new WorkerRunner().run(UserMR_deemo1::mapf, UserMR_deemo1::reducef, nWorker); // **由用户配置**
+        new WorkerRunner().run(UserMR::mapf, UserMR::reducef, nWorker);
         System.out.println("exit");
         System.exit(0);
     }
