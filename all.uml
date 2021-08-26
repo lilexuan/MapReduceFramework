@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/IdeaProjects/map-reduce-java/src/main/java</OriginalElement>
+  <nodes>
+    <node x="1224.0" y="393.4705882352944">mr.Reducer</node>
+    <node x="952.5" y="430.764705882353">WorkerRunner</node>
+    <node x="952.5" y="554.6470588235295">Driver</node>
+    <node x="1224.0" y="269.5882352941178">mr.KeyValue</node>
+    <node x="647.0" y="520.3529411764706">user.UserMR</node>
+    <node x="307.0" y="361.0">task.ReduceTaskStat</node>
+    <node x="0.0" y="372.5">task.MapTaskStat</node>
+    <node x="2.5" y="497.8529411764706">task.TaskInfo</node>
+    <node x="655.0" y="153.0">Master</node>
+    <node x="1224.0" y="470.35294117647095">mr.Mapper</node>
+    <node x="171.0" y="0.0">task.TaskStat</node>
+    <node x="953.0000000000001" y="0.0">task.TaskStatQueue</node>
+    <node x="1312.0" y="0.0">task.State</node>
+    <node x="952.9999999999999" y="269.5882352941178">MasterRunner</node>
+    <node x="307.0" y="508.8529411764706">Worker</node>
+    <node x="674.0" y="0.0">RMIable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="task.ReduceTaskStat" target="task.TaskStat" relationship="GENERALIZATION">
+      <point x="0.0" y="-63.0" />
+      <point x="458.5" y="336.0" />
+      <point x="301.0" y="336.0" />
+      <point x="0.0" y="155.5" />
+    </edge>
+    <edge source="Master" target="RMIable" relationship="REALIZATION">
+      <point x="0.0" y="-167.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="task.MapTaskStat" target="task.TaskStat" relationship="GENERALIZATION">
+      <point x="0.0" y="-51.5" />
+      <point x="143.5" y="336.0" />
+      <point x="301.0" y="336.0" />
+      <point x="0.0" y="155.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="746.5" y="404.7058823529411" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

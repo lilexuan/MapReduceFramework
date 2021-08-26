@@ -12,14 +12,14 @@ public class Master implements RMIable{
     public Master() {
     }
 
-    public Master(String[] filenames, int nReduce) {
+    public Master(String[] filenames, int nReduce, TaskStatQueue mapTaskWaiting) {
         this.filenames = filenames;
         this.nReduce = nReduce;
         this.isDone = false;
         this.reduceTaskWaiting = new TaskStatQueue();
         this.reduceTaskRunning = new TaskStatQueue();
         this.mapTaskRunning = new TaskStatQueue();
-        this.mapTaskWaiting = new TaskStatQueue();
+        this.mapTaskWaiting = mapTaskWaiting;
     }
 
     /**

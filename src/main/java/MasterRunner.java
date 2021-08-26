@@ -30,8 +30,7 @@ public class MasterRunner {
         }
         dir.mkdirs();
 
-        Master master = new Master(files, nReduce);
-        master.mapTaskWaiting = new TaskStatQueue(mapArray);
+        Master master = new Master(files, nReduce, new TaskStatQueue(mapArray));
 
         // 向rmi注册master
         Registry registry = null;
