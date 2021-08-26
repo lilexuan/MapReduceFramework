@@ -49,10 +49,11 @@ public class MasterRunner {
             collectOutOfTime(master);
         }).start();
 
-        if (master.done()) {
+        while (master.done()) {
             try {
                 registry.unbind("master");
                 UnicastRemoteObject.unexportObject(master, true);
+                System.out.println("master shut down");
             } catch (RemoteException e) {
                 e.printStackTrace();
             } catch (NotBoundException e) {
