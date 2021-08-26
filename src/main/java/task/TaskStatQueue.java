@@ -2,30 +2,32 @@ package task;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class TaskStatQueue {
-    public Deque<TaskStat> taskArray;
+//    public Deque<TaskStat> taskArray;
+    public ConcurrentLinkedDeque<TaskStat> taskArray;
 
     public TaskStatQueue() {
-        this.taskArray = new LinkedList<>();
+        this.taskArray = new ConcurrentLinkedDeque<>();
     }
 
     public TaskStatQueue(Deque<TaskStat> taskArray) {
-        this.taskArray = taskArray;
+        this.taskArray = new ConcurrentLinkedDeque<>(taskArray);
     }
 
     public int size() {
         return taskArray.size();
     }
 
-    public synchronized TaskStat pop() {
+    public TaskStat pop() {
         if (taskArray == null || taskArray.isEmpty()) {
             return null;
         }
         return taskArray.pollFirst();
     }
 
-    public synchronized void push(TaskStat taskStat) {
+    public void push(TaskStat taskStat) {
         if (this.taskArray == null) {
             return;
         }
@@ -36,7 +38,7 @@ public class TaskStatQueue {
      * 取出超时的任务
      * @return
      */
-    public synchronized Deque<TaskStat> timeOutQueue() {
+    public Deque<TaskStat> timeOutQueue() {
         Deque<TaskStat> outArray = new LinkedList<>();
         Deque<TaskStat> inArray = new LinkedList<>();
         for (TaskStat taskStat : taskArray) {
@@ -46,7 +48,7 @@ public class TaskStatQueue {
                 inArray.offerLast(taskStat);
             }
         }
-        taskArray = inArray;
+        taskArray = new ConcurrentLinkedDeque<>(inArray);
         return outArray;
     }
 
@@ -64,7 +66,7 @@ public class TaskStatQueue {
      * @param fileIndex
      * @param partIndex
      */
-    public synchronized void removeTask(int fileIndex, int partIndex) {
+    public void removeTask(int fileIndex, int partIndex) {
         taskArray.removeIf(taskStat -> taskStat.fileIndex == fileIndex && taskStat.partIndex == partIndex);
     }
 
